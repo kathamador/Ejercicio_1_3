@@ -35,7 +35,12 @@ public class MainActivity extends AppCompatActivity {
         btnagregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AgregarPersona();
+                if(nombres.getText().toString().isEmpty() || apellidos.getText().toString().isEmpty() || correo.getText().toString().isEmpty() || edad.getText().toString().isEmpty() || direccion.getText().toString().isEmpty()){
+                    validaciones();
+                }
+                else{
+                    AgregarPersona();
+                }
             }
         });
         btnlista.setOnClickListener(new View.OnClickListener() {
@@ -77,5 +82,21 @@ public class MainActivity extends AppCompatActivity {
         correo.setText(Operaciones.Empty);
         edad.setText(Operaciones.Empty);
         direccion.setText(Operaciones.Empty);
+    }
+
+    private void validaciones() {
+        if(nombres.getText().toString().equals("") && apellidos.getText().toString().equals("") && correo.getText().toString().equals("") && edad.getText().toString().equals("") && direccion.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Alerta! Todos los campos estan vacios, llenelos." ,Toast.LENGTH_LONG).show();
+        } else if (nombres.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), " Alerta! Debe de escribir un nombre." ,Toast.LENGTH_LONG).show();
+        }else if (apellidos.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), " Alerta! Debe de escribir un apellido." ,Toast.LENGTH_LONG).show();
+        }else if (correo.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Alerta! Debe de escribir un correo." ,Toast.LENGTH_LONG).show();
+        } else if (edad.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Alerta! Debe de escribir una edad." ,Toast.LENGTH_LONG).show();
+        } else if (direccion.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Alerta! Debe de escribir una direccion." ,Toast.LENGTH_LONG).show();
+        }
     }
 }
